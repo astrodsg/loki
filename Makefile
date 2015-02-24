@@ -5,7 +5,11 @@ MODULE_LOKI := loki_tool
 CC := arm-linux-androideabi-gcc
 CC_STRIP := arm-linux-androideabi-strip
 
-CFLAGS += -g -static -Wall
+CFLAGS += -g -Wall
+UNAME := $(shell uname)
+ifneq ($(UNAME),Darwin)
+	CFLAGS := $(CFLAGS) -static 
+endif
 #$(LDFLAGS) +=
 
 all: $(MODULE_LOKI)
